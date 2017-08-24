@@ -8,13 +8,13 @@ import java.util.Random;
 
 
 /**
- * Created by Kumon on 8/24/2017.
+ * This is the Tube class. It is the tube
  */
 
 public class Tube {
-    private static final int FLUCTUATION = 130;
-    private static final int TUBE_GAP = 100;
-    private static final int LOWEST_OPENING = 120;
+    private static final int FLUCTUATION = 130;//How much the random number can change by
+    private static final int TUBE_GAP = 100;//Gap between tubes vertically
+    private static final int LOWEST_OPENING = 100;
     public static final int TUBE_WIDTH = 149;//Changes depending on tube sprite
     private Texture topTube;
     private Texture botTube;
@@ -26,14 +26,14 @@ public class Tube {
         topTube = new Texture("Tube.jpg");
         botTube = new Texture("Tube.jpg");
         rand = new Random();
-        posTopTube = new Vector2(x, rand.nextInt(FLUCTUATION) + TUBE_GAP + LOWEST_OPENING);
-        posBotTube = new Vector2(x, posTopTube.y - TUBE_GAP - botTube.getHeight());
+        posTopTube = new Vector2(x, rand.nextInt(FLUCTUATION) + TUBE_GAP + LOWEST_OPENING);//Allows to choose random height of tube
+        posBotTube = new Vector2(x, posTopTube.y - TUBE_GAP - botTube.getHeight());//Placing the bottom tube based on the top tube
         boundsTop = new Rectangle(posTopTube.x,posTopTube.y, topTube.getWidth(),topTube.getHeight());
         boundsBot = new Rectangle(posBotTube.x,posBotTube.y, botTube.getWidth(),botTube.getHeight());
 
     }
     public void reposition(float x){
-        posTopTube.set(x, rand.nextInt(FLUCTUATION) + TUBE_GAP + LOWEST_OPENING);
+        posTopTube.set(x, rand.nextInt(FLUCTUATION) + TUBE_GAP + LOWEST_OPENING);//Repositioning the top and bottom tubes
         posBotTube.set(x, posTopTube.y - TUBE_GAP - botTube.getHeight());
         boundsTop.setPosition(posTopTube.x,posTopTube.y);
         boundsBot.setPosition(posBotTube.x,posBotTube.y);

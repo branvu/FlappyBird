@@ -6,16 +6,18 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.FlappyBird;
 
 /**
- * Created by Kumon on 8/24/2017.
+ * Extends State. When pressed, it should go to the Play State
  */
 
 public class MenuState extends State {
     private Texture background;
     private Texture playBtn;
     public MenuState(GameStateManager gsm) {
-        super(gsm);
-        background = new Texture("Background.jpg");
+        super(gsm);//Passes the gsm to the mother State class
+        background = new Texture("Background.jpg");//Comes from the Assets folder
         playBtn = new Texture("Button.png");
+        cam.setToOrtho(false, FlappyBird.WIDTH / 2, FlappyBird.HEIGHT / 2);//Sets the camera's origin lower left
+
     }
 
     @Override
@@ -33,9 +35,10 @@ public class MenuState extends State {
 
     @Override
     public void render(SpriteBatch sb) {
-        sb.begin();
-        sb.draw(background,0,0,FlappyBird.WIDTH, FlappyBird.HEIGHT);
-        sb.draw(playBtn,(FlappyBird.WIDTH / 2) - (playBtn.getWidth() / 2),(FlappyBird.HEIGHT / 2));
+        sb.setProjectionMatrix(cam.combined);
+        sb.begin();//Always begin and end the sprite batch
+
+        sb.draw(playBtn,cam.position.x - playBtn.getWidth() / 2,cam.position.y);//Positions the button in the center
         sb.end();
     }
     @Override

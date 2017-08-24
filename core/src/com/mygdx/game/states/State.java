@@ -5,7 +5,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
 
 /**
- * Created by Kumon on 8/24/2017.
+ * The state class is the mother class of states.
+ * Every state class has an update, render, handleInput, and dispose method
+ * A GameStateManager or gsm is passed to the State class
+ * The state class has one camera that all future states will share, and it has a Vector three mouse
+ * that holds the x and y coordinates of the mouse.
  */
 
 public abstract class State {
