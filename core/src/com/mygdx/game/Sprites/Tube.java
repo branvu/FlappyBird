@@ -15,7 +15,7 @@ public class Tube {
     private static final int FLUCTUATION = 130;//How much the random number can change by
     private static final int TUBE_GAP = 100;//Gap between tubes vertically
     private static final int LOWEST_OPENING = 100;
-    public static final int TUBE_WIDTH = 149;//Changes depending on tube sprite
+    public static final int TUBE_WIDTH = 52;//Changes depending on tube sprite
     private Texture topTube;
     private Texture botTube;
     private Vector2 posTopTube,posBotTube;
@@ -23,8 +23,8 @@ public class Tube {
     private Rectangle boundsTop, boundsBot;
 
     public Tube(float x){
-        topTube = new Texture("Tube.jpg");
-        botTube = new Texture("Tube.jpg");
+        topTube = new Texture("toptube.png");
+        botTube = new Texture("bottomtube.png");
         rand = new Random();
         posTopTube = new Vector2(x, rand.nextInt(FLUCTUATION) + TUBE_GAP + LOWEST_OPENING);//Allows to choose random height of tube
         posBotTube = new Vector2(x, posTopTube.y - TUBE_GAP - botTube.getHeight());//Placing the bottom tube based on the top tube

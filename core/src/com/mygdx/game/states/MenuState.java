@@ -37,7 +37,7 @@ public class MenuState extends State {
     public void render(SpriteBatch sb) {
         sb.setProjectionMatrix(cam.combined);
         sb.begin();//Always begin and end the sprite batch
-
+        sb.draw(background,cam.position.x - (cam.viewportWidth/2),0);
         sb.draw(playBtn,cam.position.x - playBtn.getWidth() / 2,cam.position.y);//Positions the button in the center
         sb.end();
     }
