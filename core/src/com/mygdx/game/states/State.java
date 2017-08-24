@@ -13,9 +13,9 @@ import com.badlogic.gdx.math.Vector3;
  */
 
 public abstract class State {
-    protected OrthographicCamera cam;
-    protected Vector3 mouse;
-    protected GameStateManager gsm;
+    protected OrthographicCamera cam;//Camera
+    protected Vector3 mouse;//Mouse
+    protected GameStateManager gsm;//Manager of states
 
     protected State(GameStateManager gsm){
         this.gsm = gsm;

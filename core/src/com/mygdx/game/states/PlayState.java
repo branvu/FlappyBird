@@ -74,15 +74,14 @@ public class PlayState extends State {
         sb.setProjectionMatrix(cam.combined);//The cordinate game screen starts bottom left
         sb.begin();
         sb.draw(background,cam.position.x - (cam.viewportWidth/2),0);//Viewport is centered in middle of screen, so draw it halfway off the center
-        sb.draw(bird.getBird(),bird.getPosition().x,bird.getPosition().y);
-        for(Tube tube : tubes){
-            sb.draw(tube.getTopTube(),tube.getPosTopTube().x,tube.getPosTopTube().y);
-            sb.draw(tube.getBotTube(),tube.getPosBotTube().x,tube.getPosBotTube().y);
+        sb.draw(bird.getBird(),bird.getPosition().x,bird.getPosition().y);//Draws the bird in the position
+        for(Tube tube : tubes){//For every tube in the tube array........
+            sb.draw(tube.getTopTube(),tube.getPosTopTube().x,tube.getPosTopTube().y);//Draw the top tube
+            sb.draw(tube.getBotTube(),tube.getPosBotTube().x,tube.getPosBotTube().y);//Draw the bottom tube
         }
-        sb.draw(ground,groundPos1.x,groundPos1.y);
-        sb.draw(ground,groundPos2.x,groundPos2.y);
-
-        sb.end();
+        sb.draw(ground,groundPos1.x,groundPos1.y);//Draw the first ground
+        sb.draw(ground,groundPos2.x,groundPos2.y);//Draw the second
+        sb.end();//Close the sprite batch
     }
 
     @Override

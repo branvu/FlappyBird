@@ -6,45 +6,45 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.FlappyBird;
 
 /**
- * Extends State. When pressed, it should go to the Play State
+ * Extends State class. When pressed, it should go to the Play State
+ * Contains a background and a play button sprite
  */
 
 public class MenuState extends State {
     private Texture background;
     private Texture playBtn;
-    public MenuState(GameStateManager gsm) {
+    public MenuState(GameStateManager gsm) {//Constructor for the MenuState
         super(gsm);//Passes the gsm to the mother State class
         background = new Texture("Background.jpg");//Comes from the Assets folder
-        playBtn = new Texture("Button.png");
+        playBtn = new Texture("Button.png");//Assigns the texture to the path of the actual picture
         cam.setToOrtho(false, FlappyBird.WIDTH / 2, FlappyBird.HEIGHT / 2);//Sets the camera's origin lower left
 
     }
 
     @Override
     public void handleInput() {
-        if(Gdx.input.justTouched()){
-            gsm.set(new PlayState(gsm));
+        if(Gdx.input.justTouched()){//Gets input if user touched the screen
+            gsm.set(new PlayState(gsm));//Uses the GameStateManager to set the class
         }
-
     }
 
     @Override
     public void update(float dt) {
         handleInput();
-    }
+    }//Constantly update the input
 
     @Override
     public void render(SpriteBatch sb) {
-        sb.setProjectionMatrix(cam.combined);
+        sb.setProjectionMatrix(cam.combined);//Sets a certain origin and coordinate system
         sb.begin();//Always begin and end the sprite batch
-        sb.draw(background,cam.position.x - (cam.viewportWidth/2),0);
+        sb.draw(background,cam.position.x - (cam.viewportWidth/2),0);//Positions the background at the bottom left
         sb.draw(playBtn,cam.position.x - playBtn.getWidth() / 2,cam.position.y);//Positions the button in the center
-        sb.end();
+        sb.end();//close the sprite batch
     }
     @Override
     public void dispose(){
-        background.dispose();
+        background.dispose();//Correctly disposes of the texture
         playBtn.dispose();
-        System.out.println("MenuState disposed");
+        System.out.println("MenuState disposed");//Indicates that the Menustate is properly closed and disposed
     }
 }
