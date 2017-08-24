@@ -6,7 +6,9 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 
 /**
- * This is the Bird class, it is the flappy bird
+ * This is the Bird class, it is the Flappy bird. The bird has velocity and movement.
+ * Gravity acts on it when its above position of 0
+ * The PlayState restarts every time the bird touches the ground or the tube
  */
 
 public class Bird {
@@ -32,7 +34,7 @@ public class Bird {
         if(position.y > 0)//If the bird is above 0, gravity applies
             velocity.add(0,GRAVITY,0);
         velocity.scl(dt);//Multiply everything by delta time, Scales with time
-        position.add(MOVEMENT*dt,velocity.y,0);//?
+        position.add(MOVEMENT*dt,velocity.y,0);//
 
         if(position.y < 0){//The bird cannot go lower than the ground
             position.y = 0;
