@@ -18,7 +18,7 @@ import static com.mygdx.game.Sprites.Tube.TUBE_WIDTH;
 public class PlayState extends State {
     private Bird bird;
     private Tube tube;
-    private final static int GROUND_Y_OFFSET = -100;
+    private final static int GROUND_Y_OFFSET = -50;
     private Texture ground;
     private static final int TUBE_SPACING = 125;
     private static final int TUBE_COUNT = 4;
