@@ -1,6 +1,5 @@
 package com.mygdx.game.Sprites;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
 
@@ -18,9 +17,11 @@ public class Animation {
 
     public Animation(TextureRegion region, int frameCount, float cycleTime){
         frames = new Array<TextureRegion>();
-        int frameWidth = 77 / frameCount;//Width of single frame
+        int frameWidth = region.getRegionWidth() / frameCount;//Width of single frame
+        TextureRegion temp;
         for(int i = 0; i < frameCount;i++){
-            frames.add(new TextureRegion(region, i* frameWidth,0,frameWidth,region.getRegionHeight()));
+            temp = new TextureRegion(region, i* frameWidth,0,frameWidth,region.getRegionHeight());
+            frames.add(temp);
         }
         this.frameCount = frameCount;
         maxFrameTime = cycleTime / frameCount;
