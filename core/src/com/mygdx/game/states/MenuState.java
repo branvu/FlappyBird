@@ -13,10 +13,12 @@ import com.mygdx.game.FlappyBird;
 public class MenuState extends State {
     private Texture background;
     private Texture playBtn;
+    private Texture title;
     public MenuState(GameStateManager gsm) {//Constructor for the MenuState
         super(gsm);//Passes the gsm to the mother State class
-        background = new Texture("Background.jpg");//Comes from the Assets folder
+        background = new Texture("bgPlay.png");//Comes from the Assets folder
         playBtn = new Texture("Button.png");//Assigns the texture to the path of the actual picture
+        title = new Texture("Title.png");
         cam.setToOrtho(false, FlappyBird.WIDTH / 2, FlappyBird.HEIGHT / 2);//Sets the camera's origin lower left
 
     }
@@ -38,13 +40,14 @@ public class MenuState extends State {
         sb.setProjectionMatrix(cam.combined);//Sets a certain origin and coordinate system
         sb.begin();//Always begin and end the sprite batch
         sb.draw(background,cam.position.x - (cam.viewportWidth/2),0);//Positions the background at the bottom left
-        sb.draw(playBtn,cam.position.x - playBtn.getWidth() / 2,cam.position.y);//Positions the button in the center
+        sb.draw(playBtn,cam.position.x - playBtn.getWidth() / 2,cam.position.y - 100);//Positions the button in the center
+        sb.draw(title,cam.position.x - playBtn.getWidth() / 2 + 5,cam.position.y + 100);//Positions the button in the center
+
         sb.end();//close the sprite batch
     }
     @Override
     public void dispose(){
         background.dispose();//Correctly disposes of the texture
         playBtn.dispose();
-        System.out.println("MenuState disposed");//Indicates that the Menustate is properly closed and disposed
     }
 }

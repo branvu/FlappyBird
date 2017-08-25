@@ -9,6 +9,8 @@ import com.mygdx.game.FlappyBird;
 import com.mygdx.game.Sprites.Bird;
 import com.mygdx.game.Sprites.Tube;
 
+import sun.rmi.runtime.Log;
+
 /**
  * Extends the State class
  * This is the state in which the game is played in
@@ -92,7 +94,6 @@ public class PlayState extends State {
         for(Tube tube : tubes){//Dispose every tube in the tubes array
             tube.dispose();
         }
-        System.out.println("PlayState disposed");
     }
     private void updateGround(){
         if(cam.position.x - (cam.viewportWidth /2) > groundPos1.x + ground.getWidth()){//If the camera position is in front of the first ground,...
