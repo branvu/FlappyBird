@@ -5,7 +5,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import java.util.Stack;
 
 /**
- * Created by Kumon on 8/24/2017.
+ * Manages the states by creating a stack of States and then inserting(push) or removing(pop) or
+ * setting (set) states in the stack
  */
 
 public class GameStateManager {
