@@ -3,6 +3,7 @@ package com.mygdx.game.states;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.game.FlappyBird;
@@ -19,13 +20,16 @@ import sun.rmi.runtime.Log;
 public class PlayState extends State {
     private Bird bird;
     private Tube tube;
+
     private final static int GROUND_Y_OFFSET = -50;//Offset to place the ground correctly
     private Texture ground;
+    private boolean justScored = false;
     private static final int TUBE_SPACING = 100;//Spacing between tubes
     private static final int TUBE_COUNT = 4;
     private Texture background;
     private Array<Tube> tubes;//Array of tubes
     private Vector2 groundPos1, groundPos2;
+    private double milliSinceScore;
     protected PlayState(GameStateManager gsm) {
         super(gsm);
         ground = new Texture("ground.jpg");
@@ -48,7 +52,6 @@ public class PlayState extends State {
             bird.jump();
         }
     }
-
     @Override
     public void update(float dt) {
         handleInput();
@@ -61,12 +64,20 @@ public class PlayState extends State {
                 //If the camera's left origin is greater than the right end of the tube's X POSITION, reposition the tube
                 tube.reposition(tube.getPosTopTube().x + ((Tube.TUBE_WIDTH + TUBE_SPACING) * TUBE_COUNT));//Evenly puts the next Top tube
             if(tube.collides(bird.getBounds())){
-                gsm.set(new PlayState(gsm));
+                gsm.set(new ScoreState(gsm));
+            }
+            if(tube.checkScore(bird.getScoreBounds())){
+                if((System.currentTimeMillis() - milliSinceScore) > 500) {
+                    FlappyBird.setScoreBy1();
+                    milliSinceScore = System.currentTimeMillis();
+                }
+
             }
         }
         if(bird.getPosition().y <= ground.getHeight() + GROUND_Y_OFFSET){//If bird touches the ground
-            gsm.set(new PlayState(gsm));
+            gsm.set(new ScoreState(gsm));
         }
+        justScored = false;
         cam.update();//Tells to the camera that we repositioned
 
     }
@@ -83,6 +94,7 @@ public class PlayState extends State {
         }
         sb.draw(ground,groundPos1.x,groundPos1.y);//Draw the first ground
         sb.draw(ground,groundPos2.x,groundPos2.y);//Draw the second
+
         sb.end();//Close the sprite batch
     }
 

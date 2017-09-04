@@ -23,16 +23,18 @@ public class Tube {
     private Texture botTube;
     private Vector2 posTopTube,posBotTube;
     private Random rand;
-    private Rectangle boundsTop, boundsBot;
+    private Rectangle boundsTop, boundsBot, boundsScore;
 
     public Tube(float x){
         topTube = new Texture("toptube.png");
         botTube = new Texture("bottomtube.png");
         rand = new Random();
-        posTopTube = new Vector2(x, rand.nextInt(FLUCTUATION) + TUBE_GAP + LOWEST_OPENING);//Allows to choose random height of tube
+        int randomNumber = rand.nextInt(FLUCTUATION);
+        posTopTube = new Vector2(x, randomNumber + TUBE_GAP + LOWEST_OPENING);//Allows to choose random height of tube
         posBotTube = new Vector2(x, posTopTube.y - TUBE_GAP - botTube.getHeight());//Placing the bottom tube based on the top tube
         boundsTop = new Rectangle(posTopTube.x,posTopTube.y, topTube.getWidth(),topTube.getHeight());
         boundsBot = new Rectangle(posBotTube.x,posBotTube.y, botTube.getWidth(),botTube.getHeight());
+        boundsScore = new Rectangle(posBotTube.x + 50 , posTopTube.y - TUBE_GAP,1, 100);
 
     }
     public void reposition(float x){
@@ -40,9 +42,14 @@ public class Tube {
         posBotTube.set(x, posTopTube.y - TUBE_GAP - botTube.getHeight());
         boundsTop.setPosition(posTopTube.x,posTopTube.y);
         boundsBot.setPosition(posBotTube.x,posBotTube.y);
+        boundsScore.setPosition(posBotTube.x + 50 , posTopTube.y - TUBE_GAP);
+
     }
     public boolean collides(Rectangle player){//Handles collisions between the tube and the player object
         return player.overlaps(boundsTop) || player.overlaps(boundsBot);
+    }
+    public boolean checkScore(Rectangle Player){
+        return Player.overlaps(boundsScore);
     }
 
     public Texture getTopTube() {

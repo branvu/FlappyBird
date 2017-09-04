@@ -17,6 +17,7 @@ public class Bird {
     private Vector3 velocity;
     private Texture bird;
     private Rectangle bounds;
+    private Rectangle scoreBounds;
     private Animation birdAnimation;
     private Texture texture;
     private static final int MOVEMENT  = 100;
@@ -27,6 +28,7 @@ public class Bird {
         texture = new Texture("birdAnimation.png");
         birdAnimation = new Animation(new TextureRegion(texture),3,0.5f);
         bounds = new Rectangle(x,y,texture.getWidth()/3,texture.getHeight());//A rectangle around the bird to detect collisions
+        scoreBounds = new Rectangle(x + (texture.getWidth()/3 - 1), y, 1, texture.getHeight());//Divide by three because we look at individual frame
 
     }
     public void update(float dt){
@@ -41,12 +43,14 @@ public class Bird {
         }
         velocity.scl(1/dt);//Reverses the first scale
         bounds.setPosition(position.x,position.y);//Always set the bounds rectangle to the bird
+        scoreBounds.setPosition(position.x + (texture.getWidth()/3 - 1), position.y);
 
     }
 
     public Rectangle getBounds(){
         return bounds;
     }
+    public Rectangle getScoreBounds(){return scoreBounds;}
 
     public Vector3 getPosition() {
         return position;

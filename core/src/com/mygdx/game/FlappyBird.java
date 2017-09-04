@@ -10,10 +10,13 @@ import com.mygdx.game.states.MenuState;
 public class FlappyBird extends ApplicationAdapter {
 	public static final int WIDTH = 480;
 	public static final int HEIGHT = 800;
+	private static int score = 0;
 	public static final String TITLE = "Flappy Bird";
 	private GameStateManager gsm;
 	private SpriteBatch batch;
-
+	public static int getScore(){return score;}
+    public static void setScore(int score1){score = score1;}
+    public static void setScoreBy1(){score++;}
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
