@@ -1,9 +1,11 @@
 package com.mygdx.game.states;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.game.FlappyBird;
 import com.mygdx.game.Sprites.Bird;
@@ -16,7 +18,7 @@ import sun.rmi.runtime.Log;
  * This is the state in which the game is played in
  */
 
-public class PlayState extends State {
+public class PlayState {
     private Bird bird;
     private Tube tube;
     private final static int GROUND_Y_OFFSET = -50;//Offset to place the ground correctly
@@ -26,11 +28,15 @@ public class PlayState extends State {
     private Texture background;
     private Array<Tube> tubes;//Array of tubes
     private Vector2 groundPos1, groundPos2;
-    protected PlayState(GameStateManager gsm) {
-        super(gsm);
+    protected OrthographicCamera cam;//Camera
+    protected Vector3 mouse;//Mouse
+
+    public PlayState() {
         ground = new Texture("ground.jpg");
         bird = new Bird(50,300);
         tube = new Tube(200);
+        cam = new OrthographicCamera();
+        mouse = new Vector3();
         cam.setToOrtho(false, FlappyBird.WIDTH / 2, FlappyBird.HEIGHT / 2);//Sets the camera's origin lower left
                                                                             //and sets the camera centered
         groundPos1 = new Vector2(cam.position.x - (cam.viewportWidth / 2),GROUND_Y_OFFSET);
@@ -42,15 +48,13 @@ public class PlayState extends State {
         }
     }
 
-    @Override
     protected void handleInput() {
         if(Gdx.input.justTouched()){
             bird.jump();
         }
     }
 
-    @Override
-    public void update(float dt) {
+    public PlayState update(float dt) {
         handleInput();
         updateGround();
         bird.update(dt);
@@ -61,17 +65,18 @@ public class PlayState extends State {
                 //If the camera's left origin is greater than the right end of the tube's X POSITION, reposition the tube
                 tube.reposition(tube.getPosTopTube().x + ((Tube.TUBE_WIDTH + TUBE_SPACING) * TUBE_COUNT));//Evenly puts the next Top tube
             if(tube.collides(bird.getBounds())){
-                gsm.set(new PlayState(gsm));
+                dispose();
+                return new PlayState();
             }
         }
         if(bird.getPosition().y <= ground.getHeight() + GROUND_Y_OFFSET){//If bird touches the ground
-            gsm.set(new PlayState(gsm));
+            dispose();
+            return new PlayState();
         }
         cam.update();//Tells to the camera that we repositioned
-
+        return this;
     }
 
-    @Override
     public void render(SpriteBatch sb) {
         sb.setProjectionMatrix(cam.combined);//The cordinate game screen starts bottom left
         sb.begin();
@@ -86,7 +91,6 @@ public class PlayState extends State {
         sb.end();//Close the sprite batch
     }
 
-    @Override
     public void dispose() {
         background.dispose();
         bird.dispose();
