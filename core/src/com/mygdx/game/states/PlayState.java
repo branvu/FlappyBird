@@ -45,11 +45,12 @@ public class PlayState extends State {
             tubes.add(new Tube(i * (TUBE_SPACING + Tube.TUBE_WIDTH)));//Adding the tubes to the screen at different x cordinates
         }
     }
-
+    public static long milliSecondsSincedPressed;
     @Override
     protected void handleInput() {
         if(Gdx.input.justTouched()){
             bird.jump();
+            milliSecondsSincedPressed = System.currentTimeMillis();
         }
     }
     @Override
@@ -75,9 +76,10 @@ public class PlayState extends State {
             }
         }
         if(bird.getPosition().y <= ground.getHeight() + GROUND_Y_OFFSET){//If bird touches the ground
+            milliSecondsSincedPressed = System.currentTimeMillis();
+
             gsm.set(new ScoreState(gsm));
         }
-        justScored = false;
         cam.update();//Tells to the camera that we repositioned
 
     }

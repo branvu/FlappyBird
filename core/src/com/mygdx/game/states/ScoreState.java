@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.mygdx.game.FlappyBird;
-import com.sun.org.apache.xpath.internal.operations.String;
 
 /**
  * Created by Brandon on 9/4/2017.
@@ -29,9 +28,10 @@ public class ScoreState extends State{
 
 
     }
+
     @Override
     protected void handleInput() {
-        if(Gdx.input.justTouched()){//Gets input if user touched the screen
+        if(Gdx.input.justTouched() && (System.currentTimeMillis() - PlayState.milliSecondsSincedPressed) > 700 ){//Gets input if user touched the screen
             gsm.set(new MenuState(gsm));//Uses the GameStateManager to set the class
             //System.out.println(" " + FlappyBird.getScore());
             FlappyBird.setScore(0);
