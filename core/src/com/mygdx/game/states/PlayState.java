@@ -11,8 +11,6 @@ import com.mygdx.game.FlappyBird;
 import com.mygdx.game.Sprites.Bird;
 import com.mygdx.game.Sprites.Tube;
 
-import sun.rmi.runtime.Log;
-
 /**
  * Extends the State class
  * This is the state in which the game is played in
