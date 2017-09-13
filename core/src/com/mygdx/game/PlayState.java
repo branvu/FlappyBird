@@ -1,4 +1,4 @@
-package com.mygdx.game.states;
+package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -7,9 +7,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
-import com.mygdx.game.FlappyBird;
-import com.mygdx.game.Sprites.Bird;
-import com.mygdx.game.Sprites.Tube;
 
 /**
  * Extends the State class
