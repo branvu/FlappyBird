@@ -28,14 +28,15 @@ public class Bird {
     }
     public void update(float dt){
         if(position.y > 0)//If the bird is above 0, gravity applies
-            velocity.add(0,GRAVITY,0);
-        velocity.scl(dt);//Multiply everything by delta time, Scales with time
-        position.add(MOVEMENT*dt,velocity.y,0);//
+            velocity.add(0,GRAVITY,0);//Add the gravity to the bird every update
+        //velocity.scl(dt);//Multiply everything by delta time, Scales with time (Put everything in delta time so that we can add the movement also scaled in delta time
+
+        position.add(MOVEMENT*dt,velocity.y*dt,0);//
 
         if(position.y < 0){//The bird cannot go lower than the ground
             position.y = 0;
         }
-        velocity.scl(1/dt);//Reverses the first scale
+        //velocity.scl(1/dt);//Reverses the first scale
         bounds.setPosition(position.x,position.y);//Always set the bounds rectangle to the bird
 
     }
