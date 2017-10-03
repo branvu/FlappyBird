@@ -1,5 +1,6 @@
-package test;
+package exercises;
 
+import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
@@ -7,5 +8,11 @@ import org.junit.runner.RunWith;
  */
 @RunWith(org.mockito.junit.MockitoJUnitRunner.class)
 public class JavaExercises {
+
+
+
+    @Test public void ReplaceThisWithYourMethod(){
+
+    }
     
 }
