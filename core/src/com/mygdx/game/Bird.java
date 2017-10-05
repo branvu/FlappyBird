@@ -1,4 +1,4 @@
-package com.mygdx.game.Sprites;
+package com.mygdx.game;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -13,24 +13,5 @@ import com.badlogic.gdx.math.Vector3;
 
 public class Bird {
 
-    public Bird(int x, int y){
-    }
 
-    public void update(float dt){
-    }
-
-    public Rectangle getBounds(){
-    }
-
-    public Vector3 getPosition() {
-    }
-
-    public TextureRegion getBird() {
-    }
-
-    public void jump(){
-    }
-
-    public void dispose(){
-    }
 }

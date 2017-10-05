@@ -1,4 +1,4 @@
-package com.mygdx.game.Sprites;
+package com.mygdx.game;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
@@ -16,27 +16,5 @@ import java.util.Random;
 
 public class Tube {
 
-    public Tube(float x){
-    }
 
-    public void reposition(float x){
-    }
-    public boolean collides(Rectangle player){
-    }
-
-    public Texture getTopTube() {
-    }
-
-    public Texture getBotTube() {
-    }
-
-    public Vector2 getPosTopTube() {
-    }
-
-    public Vector2 getPosBotTube() {
-    }
-
-    public void dispose(){
-
-    }
 }

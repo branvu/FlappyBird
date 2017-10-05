@@ -18,6 +18,6 @@ public class Animation {
     public void update(float dt){
     }
 
-    public TextureRegion getFrame(){
+    public void getFrame(){
     }
 }
