@@ -9,10 +9,18 @@ import org.junit.runner.RunWith;
 @RunWith(org.mockito.junit.MockitoJUnitRunner.class)
 public class JavaExercises {
 
-
-
     @Test public void ReplaceThisWithYourMethod(){
 
     }
-    
+
+    @Test public void emptyMethod(){
+
+    }
+
+    @Test public void emptyMethod2(){
+
+    }
+
 }
+
+
