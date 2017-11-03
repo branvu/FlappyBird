@@ -24,14 +24,14 @@ public class PlayState {
     private Array<Tube> tubes;//Array of tubes
     private Vector2 groundPos1, groundPos2;
     protected OrthographicCamera cam;//Camera
-    protected Vector3 mouse;//Mouse
+    protected Vector2 mouse;//Mouse
 
     public PlayState() {
         ground = new Texture("ground.jpg");
         bird = new Bird(50,300);
         tube = new Tube(200);
         cam = new OrthographicCamera();
-        mouse = new Vector3();
+        mouse = new Vector2();
         cam.setToOrtho(false, FlappyBird.WIDTH / 2, FlappyBird.HEIGHT / 2);//Sets the camera's origin lower left
                                                                             //and sets the camera centered
         groundPos1 = new Vector2(cam.position.x - (cam.viewportWidth / 2),GROUND_Y_OFFSET);
