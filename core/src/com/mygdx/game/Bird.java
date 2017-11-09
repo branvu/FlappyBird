@@ -24,21 +24,16 @@ public class Bird {
         velocity = new Vector2(0,0);//Starts idle
         bird = new Texture("bird(3).png");
         bounds = new Rectangle(x,y,bird.getWidth(),bird.getHeight());//A rectangle around the bird to detect collisions
-
     }
     public void update(float dt){
-        if(position.y > 0)//If the bird is above 0, gravity applies
-            velocity.add(0, gravity);//Add the gravity to the bird every update
-        //velocity.scl(dt);//Multiply everything by delta time, Scales with time (Put everything in delta time so that we can add the movement also scaled in delta time
+        
+        velocity.add(0, gravity);
 
         position.add(movement*dt,velocity.y*dt);
 
-        if(position.y < 0){//The bird cannot go lower than the ground
+        if(position.y <= 0){
             position.y = 0;
         }
-        //velocity.scl(1/dt);//Reverses the first scale
-        bounds.setPosition(position.x,position.y);//Always set the bounds rectangle to the bird
-
     }
 
     public Rectangle getBounds(){
@@ -56,6 +51,6 @@ public class Bird {
         velocity.y = 250;
     }
     public void dispose(){
-
+        bird.dispose();
     }
 }
