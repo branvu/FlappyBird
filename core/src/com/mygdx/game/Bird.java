@@ -28,13 +28,13 @@ public class Bird {
 
     }
     public void update(float dt){
-        if(position.y > 0)//If the bird is above 0, gravity applies
-            velocity.add(0,GRAVITY);//Add the gravity to the bird every update
+        //if(position.y > 0)//If the bird is above 0, gravity applies
+        velocity.add(0,GRAVITY);//Add the gravity to the bird every update
         //velocity.scl(dt);//Multiply everything by delta time, Scales with time (Put everything in delta time so that we can add the movement also scaled in delta time
 
         position.add(MOVEMENT*dt,velocity.y*dt);//
 
-        if(position.y < 0){//The bird cannot go lower than the ground
+        if(position.y <= 0){//The bird cannot go lower than the ground
             position.y = 0;
         }
         //velocity.scl(1/dt);//Reverses the first scale
