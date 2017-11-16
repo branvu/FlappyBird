@@ -29,14 +29,7 @@ public class PlayState {
 
     }
 
-    protected void handleInput() {
-        if(Gdx.input.justTouched()){
-        }
-    }
-
     public PlayState update(float dt) {
-        handleInput();
-
         cam.update();//Tells to the camera that we repositioned
         return this;
     }
