@@ -21,15 +21,20 @@ public class PlayState {
     protected Vector3 mouse;//Mouse
 
     protected Bird bird;
+    public void renderingMethod(){
 
+    }
     public PlayState() {
         bird = new Bird(45,10);
         cam = new OrthographicCamera();
         mouse = new Vector3();
         cam.setToOrtho(false, FlappyBird.WIDTH / 2, FlappyBird.HEIGHT / 2);//Sets the camera's origin lower left
-                                                                            //and sets the camera centered
+        //and sets the camera centered
         background = new Texture("bgPlay.png");
 
+    }
+    public void method(){
+        cam.position.x = 80 + bird.getPosition().x;
     }
 
     protected void handleInput() {
@@ -50,8 +55,7 @@ public class PlayState {
         sb.setProjectionMatrix(cam.combined);//The coordinate game screen starts bottom left
         sb.begin();
         sb.draw(background,cam.position.x - (cam.viewportWidth/2),0);//Viewport is centered in middle of screen, so draw it halfway off the center
-        sb.draw(bird.getBird(),bird.getPosition().x,bird.getPosition().y);//Draws the bird in the position
-
+        sb.draw(bird.getBird(),bird.getPosition().x ,bird.getPosition().y);
 
         sb.end();//Close the sprite batch
     }

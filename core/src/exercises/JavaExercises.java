@@ -1,5 +1,8 @@
 package exercises;
 
+import com.badlogic.gdx.Gdx;
+import com.mygdx.game.Bird;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -8,6 +11,8 @@ import org.junit.runner.RunWith;
  */
 @RunWith(org.mockito.junit.MockitoJUnitRunner.class)
 public class JavaExercises {
+    Bird bird;
+
 
     @Test public void ReplaceThisWithYourMethod(){
     }
@@ -46,7 +51,9 @@ public class JavaExercises {
     }
 
 
-public class Library{
+
+
+    public class Library{
     String classbookName;
     String color;
     int shelves;
@@ -55,6 +62,12 @@ public class Library{
     int computers;
     String name;
     boolean hasAir;
+        Bird bird;
+    protected void handleInput(){
+        if (Gdx.input.justTouched()){
+            bird.jump();
+        }
+    }
     public Library(String bookNameInput, String color, int shelves, int walls, int
                    ceilings, int computers, String name, boolean hasAir, int numberOfBaths){
         classbookName = bookNameInput;
