@@ -5,8 +5,6 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.utils.Array;
 
 /**
  * Extends the State class
@@ -31,7 +29,7 @@ public class PlayState {
         cam = new OrthographicCamera();
         mouse = new Vector2();
         cam.setToOrtho(false, FlappyBird.WIDTH / 2, FlappyBird.HEIGHT / 2);//Sets the camera's origin lower left
-                                                                            //and sets the camera centered
+        //and sets the camera centered
         groundPos1 = new Vector2(cam.position.x - (cam.viewportWidth / 2),GROUND_Y_OFFSET);
         groundPos2 = new Vector2((cam.position.x - (cam.viewportWidth / 2)) + ground.getWidth(),GROUND_Y_OFFSET);
         background = new Texture("bgPlay.png");
@@ -52,32 +50,12 @@ public class PlayState {
         updateGround();
         bird.update(dt);
         cam.position.x = bird.getPosition().x + 80;//Center the camera on the bird
-        for(int i = 0; i < 4; i++){//Do this rather than below because other way will throw nested error
-            if(i == 0){
-                updateTube(tube1);
-                if(gameOver){
-                    return new PlayState();
-                }
-            }
-            else if (i == 1){
-                updateTube(tube2);
-                if(gameOver){
-                    return new PlayState();
-                }
-            }
-            else if (i == 2){
-                updateTube(tube3);
-                if(gameOver){
-                    return new PlayState();
-                }
-            }
-            else if (i == 3){
-                updateTube(tube4);
-                if(gameOver){
-                    return new PlayState();
-                }
-            }
-
+        updateTube(tube1);
+        updateTube(tube2);
+        updateTube(tube3);
+        updateTube(tube4);
+        if(gameOver){
+            return new PlayState();
         }
         if(bird.getPosition().y <= ground.getHeight() + GROUND_Y_OFFSET){//If bird touches the ground
             dispose();
