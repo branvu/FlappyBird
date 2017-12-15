@@ -24,7 +24,7 @@ public class FlappyBird extends ApplicationAdapter {
 	public void render () {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		playState = playState.update(Gdx.graphics.getDeltaTime());//Make sure that the (Do we need to set it equal to the updated playState?)
-        playState.render(batch);                                  // playState object is updated
+		playState.render(batch); // playState object is updated
 	}
 	
 	@Override

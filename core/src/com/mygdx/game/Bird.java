@@ -34,6 +34,7 @@ public class Bird {
         if(position.y <= 0){
             position.y = 0;
         }
+        bounds.setPosition(position.x,position.y);//Always set the bounds rectangle to the bird
     }
 
     public Rectangle getBounds(){
